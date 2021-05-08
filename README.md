@@ -13,6 +13,48 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJ
 Visitor:
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJpc3MiOiJodHRwczovL2ZlcmZpLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDhkYzE0YWQ0OTI5ZDAwNmE4ZDYxOTQiLCJhdWQiOiJwaG90b2dyYXBoeSIsImlhdCI6MTYyMDQ3MzE5MCwiZXhwIjoxNjIwNTU5NTkwLCJhenAiOiIxY3hMU01xbGxCdG83d0hrbFBOV1FtVWdIeUxyb3BDVyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRhdGEiXX0.WBDMfVzIjKVqsIjDduFujUD-Yd-5QoxMP0PLVIirHOjP2_6MxaOIvhUHx5FMV1fLQNNS2jHxFCx7vPlg9S8LQnv4_ndLkXnasRnkGaLb2qRkLNTgwCFMUV8fggOaIkqC2W-a48v_5Ndqr8viR-8zDpXAGDVvYGwiqgkvIq4wOlUUN9QPvS7i69mpRd5IT0lZxteHjBzsHHnWX861rn06f5Z3DS4FDd2tbe3fn5wSSEoFPbW0d1DajEsXMVnmGcp2mGXMRvxenDjUOps80lb6OIvA1gipyF1CyLhztphU8NMLENcd4CjXrCuliizH2vuGVGj-GYi7e4HAx3P9Nzs1sQ
 
+Heroku DATABASE_URL: postgres://lfigvzfrjqtiit:488ea0cb4c40f1fef6787a0f49bf3f174a1f43de328616d278584467f1e3c2e2@ec2-54-74-35-87.eu-west-1.compute.amazonaws.com:5432/d54ml76mm6330
+
+## Endpoints:
+- GET /sales 
+show data in  sales table
+requires the 'get:data' permission
+returns status code 200 and json {"success": True, "image_sales": all_sales} 
+-GET  /images:
+show data in image table
+requires the 'get:data' permission
+returns status code 200 and json {"success": True, " all_images":  all_images} 
+-POST /data, add jsonfile:
+'''{   
+    "create": "sale",
+    "image_id": 2,
+    "sales_date": "2020-05-08 09:52:30",
+    "income": 0.9,
+    "platform": "AdobeStock"
+}'''
+create a new row in the Sale or Image table
+requires the 'post:data' permission
+returns status code 200 and json {"success": True, "data": data} where data is an array containing only the newly created data
+- DELETE /delete/<type>/<id>
+<type>: image or sale
+<id>: id to be deleted
+removes image or sale from table
+requires the 'delete:data' permission
+returns status code 200 and json {"success": True, 'type': type, 'id': id } 
+- POST /data/<id> 
+add jsonfile containing data:
+'''{   
+    "patch": "sale",
+    "image_id": 2,
+    "sales_date": "2020-05-08 09:52:30",
+    "income": 0.9,
+    "platform": "AdobeStock"
+}'''
+<id>: id to be changed
+changes image data or sales in table
+requires the 'patch:data' permission
+returns status code 200 and json {"success": True, 'data': data }
+
 ## Getting Started
 
 ### Installing Dependencies
