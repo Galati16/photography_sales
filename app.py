@@ -156,6 +156,11 @@ changes image data or sales in table
 requires the 'patch:data' permission
 returns status code 200 and json {"success": True, 'data': data } 
 '''  
+@app.route('/', methods=['GET'])
+def hello_world():
+    return 'Hello, World!'
+    
+
 @app.route('/data/<id>', methods=['PATCH'])
 @requires_auth('patch:data')
 def patch_data(payload, id):
