@@ -1,6 +1,8 @@
 # photography_sales
 Backend server and database for managing online sales of photographies on dreamstime.
 ## For Reviewer:
+Heroku: https://photography-sales.herokuapp.com/fd
+
 Two roles have been established:
 Visitor only with get:data permission
 NoeFerfi with all permissions: get:data, patch:data, post:data, delete:data
