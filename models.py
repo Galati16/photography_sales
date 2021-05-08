@@ -25,15 +25,14 @@ db_drop_and_create_all()
     can be used to initialize a clean database
 '''
 def db_drop_and_create_all():
+    db.session.remove()
     db.drop_all()
     db.create_all()
     # add one demo row which is helping in POSTMAN test
     image = Image(
-        id = 1,
         description='Pebbles on beach',
         active_since='2021-05-08 08:52:40'
     )
-    image.insert()
     sale = Sale(
         image_id= 1,
         sales_date='2020-05-08 08:52:40',
@@ -52,8 +51,9 @@ class Image(db.Model):
   __tablename__ = 'images'
 
   id = Column(Integer, primary_key=True)
-  description = Column(String, nullable=False)
+  description = Column(db.String(500), nullable=False)
   active_since = Column(db.DateTime, nullable=False)
+  children = db.relationship("Sale")
 
   def __init__(self, description, active_since):
     self.description = description
@@ -85,10 +85,11 @@ class Sale(db.Model):
   __tablename__ = 'sales'
 
   id = Column(Integer, primary_key=True)
-  image_id = Column( Integer, ForeignKey('Image.id'))
-  sales_date = Column(DateTime, nullable=False)
-  income = Column(Float, nullable=False)
-  platform = Column(String, nullabel=False)
+  image_id = Column( Integer, db.ForeignKey('images.id'))
+  sales_date = Column(db.DateTime, nullable=False)
+  income = Column(db.Float, nullable=False)
+  platform = Column(db.String(120))
+  
 
   def __init__(self, image_id, sales_date, income, platform):
     self.image_id = image_id
