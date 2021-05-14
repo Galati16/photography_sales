@@ -138,7 +138,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "\n{   \n    \"create\": \"sale\",\n    \"image_id\": 2,\n    \"sales_date\": \"2020-05-08 09:52:30\",\n    \"income\": 0.9,\n    \"platform\": \"AdobeStock\"\n}\n"
+							"raw": "\n{   \n    \"create\": \"sale\",\n    \"image_id\": 1,\n    \"sales_date\": \"2020-05-08 09:52:30\",\n    \"income\": 0.9,\n    \"platform\": \"AdobeStock\"\n}\n"
 						},
 						"url": {
 							"raw": "{{host}}/data",
@@ -326,7 +326,7 @@
 					"response": []
 				},
 				{
-					"name": "data/1 sale",
+					"name": "data/3  sale",
 					"event": [
 						{
 							"listen": "test",
@@ -336,7 +336,7 @@
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"value contains drinks array\", function () {",
+									"pm.test(\"value contains sale array\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.data).to.be.an('array')",
 									"});"
@@ -360,13 +360,13 @@
 							"raw": "{\n    \"patch\": \"sale\",\n    \"income\": 1.7,\n    \"platform\": \"Dreamstime\",\n    \"sales_date\": \"Fri, 08 May 2020 08:52:40 GMT\"\n\n}"
 						},
 						"url": {
-							"raw": "{{host}}/data/1",
+							"raw": "{{host}}/data/3",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"data",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -405,7 +405,7 @@
 					"response": []
 				},
 				{
-					"name": "/delete/sale/1",
+					"name": "/delete/sale/3",
 					"event": [
 						{
 							"listen": "test",
@@ -427,14 +427,14 @@
 							"raw": "{   \r\n    \"type\": \"image\",\r\n}"
 						},
 						"url": {
-							"raw": "{{host}}/delete/sale/1",
+							"raw": "{{host}}/delete/sale/3",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"delete",
 								"sale",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -482,7 +482,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJpc3MiOiJodHRwczovL2ZlcmZpLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDk2NzNiNThhNDcwMzAwNjk4YmQzNmIiLCJhdWQiOiJwaG90b2dyYXBoeSIsImlhdCI6MTYyMDQ3MjkxMiwiZXhwIjoxNjIwNTU5MzEyLCJhenAiOiIxY3hMU01xbGxCdG83d0hrbFBOV1FtVWdIeUxyb3BDVyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRhdGEiLCJnZXQ6ZGF0YSIsInBhdGNoOmRhdGEiLCJwb3N0OmRhdGEiXX0.EvJpBgn8CtYJ_h3pysNb7x6VxVOEmBWtU1jmJdmLN73qS3NFdhyfeVsWsPJRfZdlzw8drIZbdOS_zwS1EzxUadPNyiaIGu36eMa3raGu0bApwWQL0uzMbN99_x_HbtRe0BghB38twiTxT0o8DCly6Mp4Py9ugvNuKuISyYmjErBzYSzXyrIya0mHe_k2L7WJR2_YYHWN6yczhmyp0E4ErSsomKEr_53O0dJbqy7DmBqgLhvVZvu1sxu275DOhMhsmdblwOI1ZEEHEahXKwneuP0NwB6YbzUaTUC9tBaxN0KYI0qiDXGDLj8glBoW8ZkihbQaw7Q2UAp-0OylsXp3Cg",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJpc3MiOiJodHRwczovL2ZlcmZpLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDk2NzNiNThhNDcwMzAwNjk4YmQzNmIiLCJhdWQiOiJwaG90b2dyYXBoeSIsImlhdCI6MTYyMDk5ODM5NCwiZXhwIjoxNjIxMDg0Nzk0LCJhenAiOiIxY3hMU01xbGxCdG83d0hrbFBOV1FtVWdIeUxyb3BDVyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRhdGEiLCJnZXQ6ZGF0YSIsInBhdGNoOmRhdGEiLCJwb3N0OmRhdGEiXX0.m5WbKR76XaFbQ9cfbPsrqDDaWoN2muRPWgKs6DzPnmCSqNaxk1LCyQcJXzANGNerMdYtbHg1w5gYs6MO4IF6k0L5QgUgtbCFTRwvHWYQziMVOhhcWPcADYg9dFb8rNibf0Z6oZ9GaYfSBuH95GOPp0QX2Eh2IRjB6b0OZ1bj-7QIxy0lKRn3Y6TgeDozu75PVyeHG4aTAG2V8VBddOiSUraqAR72_ArfXkRMV8xYjq18mAGAk897d5DjzfbcRDeJRxAniZtiwuIa2W8_oZGMKgmOKoMsZO64Cir5Xc40fF-TMo4f8Ep7Xut_3li_E89jLyWCpfkm_pD-WsDVTrrNRw",
 						"type": "string"
 					}
 				]
@@ -535,12 +535,47 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/sales",
+							"raw": "https://photography-sales.herokuapp.com/sales",
+							"protocol": "https",
+							"host": [
+								"photography-sales",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"sales"
+								""
 							]
 						}
 					},
@@ -943,7 +978,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJpc3MiOiJodHRwczovL2ZlcmZpLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDhkYzE0YWQ0OTI5ZDAwNmE4ZDYxOTQiLCJhdWQiOiJwaG90b2dyYXBoeSIsImlhdCI6MTYyMDQ3MzE5MCwiZXhwIjoxNjIwNTU5NTkwLCJhenAiOiIxY3hMU01xbGxCdG83d0hrbFBOV1FtVWdIeUxyb3BDVyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRhdGEiXX0.WBDMfVzIjKVqsIjDduFujUD-Yd-5QoxMP0PLVIirHOjP2_6MxaOIvhUHx5FMV1fLQNNS2jHxFCx7vPlg9S8LQnv4_ndLkXnasRnkGaLb2qRkLNTgwCFMUV8fggOaIkqC2W-a48v_5Ndqr8viR-8zDpXAGDVvYGwiqgkvIq4wOlUUN9QPvS7i69mpRd5IT0lZxteHjBzsHHnWX861rn06f5Z3DS4FDd2tbe3fn5wSSEoFPbW0d1DajEsXMVnmGcp2mGXMRvxenDjUOps80lb6OIvA1gipyF1CyLhztphU8NMLENcd4CjXrCuliizH2vuGVGj-GYi7e4HAx3P9Nzs1sQ",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjB5SnU5T3lseXBZVVBjTWg4bVhaRSJ9.eyJpc3MiOiJodHRwczovL2ZlcmZpLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MDhkYzE0YWQ0OTI5ZDAwNmE4ZDYxOTQiLCJhdWQiOiJwaG90b2dyYXBoeSIsImlhdCI6MTYyMDk5Nzg1MCwiZXhwIjoxNjIxMDg0MjUwLCJhenAiOiIxY3hMU01xbGxCdG83d0hrbFBOV1FtVWdIeUxyb3BDVyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRhdGEiXX0.abvdjfwQp4ihSHgTyxUAbqCUjfg_JR1dN3DrhjyrjKJ_fVvdq3WgAeF9JXDwY6R98-b6iSLeAHGWxUptWfrxwG-es9QpmMrAxl5kpKjFLU4VC1D6DJ4HZo2HKkrw2ZAgE69BkCXAikPGvA1_BA9ON038isKLxMsTtoZmfjbVXvvKpXIYe9xmQteMDYw6PpbHH1IZbWT3R1tMCxT_z7-UidI_r8PVuDvQxiFB0Z-l9sOYz-uhlbv42rV8EY7L9EB6qfh1OGPk29L7Kqq_Nx8vjDdSAYiFQOFeiIW8Wi4u3tP71__CX05duChtSxIM-tNtKNg6sG8EDkp1dn-ZJvPsaA",
 						"type": "string"
 					}
 				]
@@ -992,8 +1027,12 @@
 	],
 	"variable": [
 		{
-			"key": "host",
+			"key": "localhost",
 			"value": "localhost:8080"
+		},
+		{
+			"key": "host",
+			"value": "https://photography-sales.herokuapp.com/"
 		}
 	]
 }
