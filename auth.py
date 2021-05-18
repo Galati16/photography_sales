@@ -129,7 +129,6 @@ def verify_decode_jwt(token):
                 'e': key['e']
             }
     if rsa_key:
-        print(os.environ['ALGORITHMS'], os.environ['API_AUDIENCE'], 'https://' + os.environ['AUTH0_DOMAIN'] + '/')
         try:
             payload = jwt.decode(
                 token,
