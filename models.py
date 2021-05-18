@@ -1,5 +1,4 @@
-import os
-from sqlalchemy import Column, String, Integer, create_engine
+from sqlalchemy import Column, Integer
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -13,7 +12,7 @@ setup_db(app)
     binds a flask application and a SQLAlchemy service
 '''
 def setup_db(app, database_path=database_path):
-    app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://lfigvzfrjqtiit:488ea0cb4c40f1fef6787a0f49bf3f174a1f43de328616d278584467f1e3c2e2@ec2-54-74-35-87.eu-west-1.compute.amazonaws.com:5432/d54ml76mm6330'
+    app.config["SQLALCHEMY_DATABASE_URI"] = 'postgres://yjmiupvcoavdtp:47e2569369d780d5aaa39aee80f18b22e37840adab315703ea233feb787b631c@ec2-34-247-151-118.eu-'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
