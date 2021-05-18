@@ -134,12 +134,12 @@ def delete_data(payload, id, type):
             image = Image.query.filter(Image.id == id).one_or_none()
             if image is None:
                abort(404)
-            #image.delete()
+            image.delete()
     elif type == 'sale':
             sale = Sale.query.filter(Sale.id == id).one_or_none()
             if sale is None:
                 abort(404)
-            #sale.delete()
+            sale.delete()
     else:
         abort(500)
     
@@ -150,17 +150,12 @@ def delete_data(payload, id, type):
      }),200
 
 '''
-POST /data/<id>
+PATCH /data/<id>
 <id>: id to be changed
 changes image data or sales in table
 requires the 'patch:data' permission
 returns status code 200 and json {"success": True, 'data': data } 
-'''  
-@app.route('/', methods=['GET'])
-def hello_world():
-    return 'Hello, World!'
-    
-
+'''      
 @app.route('/data/<id>', methods=['PATCH'])
 @requires_auth('patch:data')
 def patch_data(payload, id):
@@ -200,7 +195,12 @@ def patch_data(payload, id):
                'data': [data.format()]
                 })
             #except:
-            #abort(405)           
+            #abort(405)   
+            
+                   
+@app.route('/', methods=['GET'])
+def hello_world():
+    return 'Hello, World!'
 
 # Error Handling
 @app.errorhandler(422)
