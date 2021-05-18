@@ -3,14 +3,10 @@ from flask import request, _request_ctx_stack
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
+import os
 
 
-AUTH0_DOMAIN = 'ferfi.eu.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'photography'
-# for reviewer:
-AUTH0_CLIENT = '1cxLSMqllBto7wHklPNWQmUgHyLropCW'
-REDIRECT_URL = 'https://localhost:8100'
+
 
 # AuthError Exception
 '''
@@ -111,7 +107,8 @@ def check_permissions(permission, payload):
 
 
 def verify_decode_jwt(token):
-    jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
+    auth0_domain=os.environ['AUTH0_DOMAIN']
+    jsonurl = urlopen(f'https://{auth0_domain}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
@@ -132,14 +129,16 @@ def verify_decode_jwt(token):
                 'e': key['e']
             }
     if rsa_key:
+        print(os.environ['ALGORITHMS'], os.environ['API_AUDIENCE'], 'https://' + os.environ['AUTH0_DOMAIN'] + '/')
         try:
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algorithms=ALGORITHMS,
-                audience=API_AUDIENCE,
-                issuer='https://' + AUTH0_DOMAIN + '/'
+                algorithms=os.environ['ALGORITHMS'],
+                audience=os.environ['API_AUDIENCE'],
+                issuer='https://' + os.environ['AUTH0_DOMAIN'] + '/'
             )
+            
             return payload
 
         except jwt.ExpiredSignatureError:
